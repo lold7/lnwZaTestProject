@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management - BookStore Admin</title>
+    <meta name="description" content="Manage your customer database and view history.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body style="background-color: var(--admin-bg);">
+    <div class="admin-layout">
+        <!-- ========== SIDEBAR ========== -->
+        <aside class="admin-sidebar border-end bg-white">
+            <div class="sidebar-header border-bottom">
+                <div class="logo d-flex align-items-center gap-2">
+                    <div class="logo-icon text-white"><i class="bi bi-book-half"></i></div>
+                    <div>
+                        <h5 class="m-0 fw-bold fs-6">BookStore</h5>
+                        <small class="text-muted" style="font-size: 0.72rem;">Admin Console</small>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-nav mt-4">
+                <ul class="nav flex-column gap-1 px-3">
+                    <li class="nav-item">
+                        <a href="admin-dashboard-overview.html" class="nav-link"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-category-management.html" class="nav-link"><i class="bi bi-diagram-3"></i> Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-product-management.html" class="nav-link"><i class="bi bi-journal-check"></i> Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="inventory.html" class="nav-link"><i class="bi bi-box-seam"></i> Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><i class="bi bi-receipt-cutoff"></i> Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="customer-management.html" class="nav-link active"><i class="bi bi-people"></i> Customers</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="admin-main">
+            <!-- Topbar (Custom Variation for Customers Page) -->
+            <header class="bg-white border-bottom d-flex align-items-center justify-content-between px-5 py-3 sticky-top">
+                <div>
+                    <h2 class="m-0 fw-bold fs-3">Customer Management</h2>
+                    <p class="text-muted m-0 font-size-14 mt-1">Manage your customer database and view history.</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="icon-circle bg-light text-muted position-relative" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #e9ecef; cursor: pointer;">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute border border-white rounded-circle bg-danger" style="width: 8px; height: 8px; top: 10px; right: 10px;"></span>
+                    </div>
+                    <div class="customer-avatar bg-primary-subtle text-primary border border-primary-subtle" style="width: 42px; height: 42px; cursor: pointer;">
+                        AD
+                    </div>
+                </div>
+            </header>
+
+            <!-- Table Container Area -->
+            <div class="p-5" style="max-width: 1300px;">
+                <div class="admin-card p-0 overflow-hidden border-0 shadow-sm rounded-4">
+                    
+                    <!-- Table Actions Toolbar -->
+                    <div class="table-toolbar d-flex flex-wrap gap-3 justify-content-between align-items-center bg-white">
+                        <div class="search-bar position-relative" style="min-width: 350px; flex-grow: 1; max-width: 500px;">
+                            <i class="bi bi-search position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" class="form-control ps-5 py-2 text-dark" placeholder="Search customers by name or email...">
+                        </div>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-white border px-4 py-2 d-flex align-items-center gap-2 fw-medium text-dark bg-white shadow-sm">
+                                <i class="bi bi-filter"></i> Filter
+                            </button>
+                            <button class="btn btn-primary px-4 py-2 d-flex align-items-center gap-2 fw-medium shadow-sm">
+                                <i class="bi bi-plus-lg"></i> Add Customer
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Customer Table -->
+                    <div class="table-responsive">
+                        <table class="table admin-table mb-0 align-middle table-hover">
+                            <thead class="bg-white text-muted border-bottom">
+                                <tr>
+                                    <th class="ps-4 text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Customer</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Email</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Orders</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Total Spent</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Status</th>
+                                    <th class="text-end pe-4 text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-jd text-primary fw-bold">JD</div>
+                                            <div>
+                                                <h6 class="m-0 fw-semibold font-size-14 text-dark mb-1">John Doe</h6>
+                                                <small class="text-muted font-size-12">Since Jan 2023</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">john.doe@example.com</td>
+                                    <td class="text-dark font-size-14 border-bottom">5</td>
+                                    <td class="text-dark font-size-14 fw-medium border-bottom">$120.50</td>
+                                    <td class="border-bottom"><span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 fw-normal border border-success-subtle">Active</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <button class="btn-icon-dots fs-5"><i class="bi bi-three-dots-vertical"></i></button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-js fw-bold">JS</div>
+                                            <div>
+                                                <h6 class="m-0 fw-semibold font-size-14 text-dark mb-1">Jane Smith</h6>
+                                                <small class="text-muted font-size-12">Since Feb 2023</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">jane@books.com</td>
+                                    <td class="text-dark font-size-14 border-bottom">12</td>
+                                    <td class="text-dark font-size-14 fw-medium border-bottom">$340.00</td>
+                                    <td class="border-bottom"><span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 fw-normal border border-success-subtle">Active</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <button class="btn-icon-dots fs-5"><i class="bi bi-three-dots-vertical"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-bb fw-bold">BB</div>
+                                            <div>
+                                                <h6 class="m-0 fw-semibold font-size-14 text-dark mb-1">Bob Brown</h6>
+                                                <small class="text-muted font-size-12">Since Mar 2023</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">bob@read.net</td>
+                                    <td class="text-dark font-size-14 border-bottom">1</td>
+                                    <td class="text-dark font-size-14 fw-medium border-bottom">$15.00</td>
+                                    <td class="border-bottom"><span class="badge status-inactive rounded-pill px-3 py-1 fw-normal">Inactive</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <button class="btn-icon-dots fs-5"><i class="bi bi-three-dots-vertical"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-aw fw-bold">AW</div>
+                                            <div>
+                                                <h6 class="m-0 fw-semibold font-size-14 text-dark mb-1">Alice White</h6>
+                                                <small class="text-muted font-size-12">Since Apr 2023</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">alice@w.com</td>
+                                    <td class="text-dark font-size-14 border-bottom">8</td>
+                                    <td class="text-dark font-size-14 fw-medium border-bottom">$210.25</td>
+                                    <td class="border-bottom"><span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 fw-normal border border-success-subtle">Active</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <button class="btn-icon-dots fs-5"><i class="bi bi-three-dots-vertical"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 5 -->
+                                <tr>
+                                    <td class="ps-4 py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-cg fw-bold">CG</div>
+                                            <div>
+                                                <h6 class="m-0 fw-semibold font-size-14 text-dark mb-1">Charlie Green</h6>
+                                                <small class="text-muted font-size-12">Since May 2023</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14">charlie@g.com</td>
+                                    <td class="text-dark font-size-14">3</td>
+                                    <td class="text-dark font-size-14 fw-medium">$75.00</td>
+                                    <td><span class="badge status-suspended rounded-pill px-3 py-1 fw-normal border border-danger-subtle">Suspended</span></td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn-icon-dots fs-5"><i class="bi bi-three-dots-vertical"></i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination Footer -->
+                    <div class="d-flex flex-wrap align-items-center justify-content-between p-4 border-top bg-white">
+                        <span class="text-muted font-size-14 mb-2 mb-md-0">Showing 1 to <strong>5</strong> of 20 results</span>
+                        <ul class="admin-pagination pagination m-0 gap-1 d-flex align-items-center">
+                            <li class="page-item"><a class="page-link border bg-white text-muted shadow-sm rounded px-2 py-1" href="#"><i class="bi bi-chevron-left" style="font-size: 0.8rem;"></i></a></li>
+                            <li class="page-item"><a class="page-link border bg-primary-subtle text-primary border-primary-subtle rounded px-3 py-1 shadow-sm fw-bold" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-muted bg-transparent px-3 py-1 shadow-none" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-muted bg-transparent px-3 py-1 shadow-none" href="#">3</a></li>
+                            <li class="page-item disabled"><span class="page-link border-0 text-muted bg-transparent shadow-none">...</span></li>
+                            <li class="page-item"><a class="page-link border bg-white text-muted shadow-sm rounded px-2 py-1" href="#"><i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

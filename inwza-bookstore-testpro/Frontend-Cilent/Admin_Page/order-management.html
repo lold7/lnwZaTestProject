@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management - BookStore Admin</title>
+    <meta name="description" content="Manage and fulfill customer book orders.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body style="background-color: var(--admin-bg);">
+    <div class="admin-layout">
+        <!-- ========== SIDEBAR ========== -->
+        <aside class="admin-sidebar border-end bg-white">
+            <div class="sidebar-header border-bottom">
+                <div class="logo d-flex align-items-center gap-2">
+                    <div class="logo-icon bg-primary text-white rounded p-1"><i class="bi bi-book-half"></i></div>
+                    <div>
+                        <h5 class="m-0 fw-bold fs-6">BookStore</h5>
+                        <small class="text-muted" style="font-size: 0.72rem;">Admin Console</small>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-nav mt-4">
+                <ul class="nav flex-column gap-1 px-3">
+                    <li class="nav-item">
+                        <a href="admin-dashboard-overview.html" class="nav-link"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-category-management.html" class="nav-link"><i class="bi bi-diagram-3"></i> Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="admin-product-management.html" class="nav-link"><i class="bi bi-journal-check"></i> Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="inventory.html" class="nav-link"><i class="bi bi-box-seam"></i> Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="order-management.html" class="nav-link active"><i class="bi bi-receipt-cutoff"></i> Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="customer-management.html" class="nav-link"><i class="bi bi-people"></i> Customers</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="admin-main">
+            <!-- Page Header Area (Replaces standard topbar for this specific layout) -->
+            <header class="d-flex align-items-center justify-content-between px-5 pt-5 pb-4">
+                <div>
+                    <h2 class="m-0 fw-bold fs-3">Order Management</h2>
+                    <p class="text-muted m-0 font-size-14 mt-1">Manage and fulfill customer book orders.</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-white border px-4 py-2 d-flex align-items-center gap-2 fw-medium text-dark bg-white shadow-sm">
+                        Export CSV
+                    </button>
+                    <button class="btn btn-primary px-4 py-2 d-flex align-items-center gap-2 fw-medium shadow-sm">
+                        <i class="bi bi-plus-lg"></i> Create Order
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content Container -->
+            <div class="px-5 pb-5 pt-0" style="max-width: 1300px;">
+                
+                <!-- Filter Bar Card -->
+                <div class="admin-card p-2 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3 shadow-sm border-0">
+                    <!-- Tabs -->
+                    <div class="order-tabs d-flex align-items-center gap-1">
+                        <a href="#" class="tab-link active">All Orders</a>
+                        <a href="#" class="tab-link">Pending</a>
+                        <a href="#" class="tab-link">Processing</a>
+                        <a href="#" class="tab-link">Completed</a>
+                        <a href="#" class="tab-link">Cancelled</a>
+                    </div>
+                    
+                    <!-- Search & Filter Controls -->
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="search-bar position-relative" style="width: 250px;">
+                            <i class="bi bi-search position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" class="form-control ps-5 text-dark" placeholder="Search order ID, customer...">
+                        </div>
+                        <button class="btn btn-white border px-3 d-flex align-items-center gap-2 fw-medium text-dark bg-white shadow-sm">
+                            <i class="bi bi-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Orders Table Card -->
+                <div class="admin-card p-0 overflow-hidden border-0 shadow-sm rounded-4">
+                    <div class="table-responsive">
+                        <table class="table admin-table mb-0 align-middle table-hover">
+                            <thead class="bg-white text-muted border-bottom">
+                                <tr>
+                                    <th class="ps-4 text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Order ID</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Customer</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Date</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Total</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Payment</th>
+                                    <th class="text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Status</th>
+                                    <th class="text-end pe-4 text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.72rem;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom"><a href="#" class="text-decoration-none fw-medium text-primary">#ORD-001</a></td>
+                                    <td class="border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-jd text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">JD</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">John Doe</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">Oct 24, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold border-bottom">$45.00</td>
+                                    <td class="text-secondary font-size-14 border-bottom">Credit Card</td>
+                                    <td class="border-bottom"><span class="badge status-pending rounded-pill px-3 py-1 fw-normal">Pending</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom"><a href="#" class="text-decoration-none fw-medium text-primary">#ORD-002</a></td>
+                                    <td class="border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-as text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">AS</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">Alice Smith</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">Oct 23, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold border-bottom">$120.50</td>
+                                    <td class="text-secondary font-size-14 border-bottom">PayPal</td>
+                                    <td class="border-bottom"><span class="badge status-completed rounded-pill px-3 py-1 fw-normal">Completed</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom"><a href="#" class="text-decoration-none fw-medium text-primary">#ORD-003</a></td>
+                                    <td class="border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-rj text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">RJ</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">Robert Johnson</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">Oct 23, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold border-bottom">$32.00</td>
+                                    <td class="text-secondary font-size-14 border-bottom">Stripe</td>
+                                    <td class="border-bottom"><span class="badge status-processing rounded-pill px-3 py-1 fw-normal">Processing</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom"><a href="#" class="text-decoration-none fw-medium text-primary">#ORD-004</a></td>
+                                    <td class="border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-ew text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">EW</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">Emily Williams</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">Oct 22, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold border-bottom">$15.99</td>
+                                    <td class="text-secondary font-size-14 border-bottom">Credit Card</td>
+                                    <td class="border-bottom"><span class="badge status-cancelled rounded-pill px-3 py-1 fw-normal">Cancelled</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 5 -->
+                                <tr>
+                                    <td class="ps-4 py-3 border-bottom"><a href="#" class="text-decoration-none fw-medium text-primary">#ORD-005</a></td>
+                                    <td class="border-bottom">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-mb text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">MB</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">Michael Brown</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14 border-bottom">Oct 21, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold border-bottom">$210.00</td>
+                                    <td class="text-secondary font-size-14 border-bottom">Bank Transfer</td>
+                                    <td class="border-bottom"><span class="badge status-completed rounded-pill px-3 py-1 fw-normal">Completed</span></td>
+                                    <td class="text-end pe-4 border-bottom">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 6 -->
+                                <tr>
+                                    <td class="ps-4 py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="customer-avatar bg-sl text-primary fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">SL</div>
+                                            <h6 class="m-0 fw-medium font-size-14 text-dark">Sarah Lee</h6>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary font-size-14">Oct 21, 2023</td>
+                                    <td class="text-dark font-size-14 fw-semibold">$88.50</td>
+                                    <td class="text-secondary font-size-14">PayPal</td>
+                                    <td><span class="badge status-processing rounded-pill px-3 py-1 fw-normal">Processing</span></td>
+                                    <td class="text-end pe-4">
+                                        <a href="#" class="text-decoration-none fw-medium text-primary font-size-14">Edit</a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination Footer -->
+                    <div class="d-flex flex-wrap align-items-center justify-content-between p-4 border-top bg-white">
+                        <span class="text-muted font-size-14 mb-2 mb-md-0">Showing 1 to 6 of 42 results</span>
+                        <ul class="admin-pagination pagination m-0 gap-1 d-flex align-items-center">
+                            <li class="page-item"><a class="page-link border bg-white text-muted shadow-sm rounded px-2 py-1" href="#"><i class="bi bi-chevron-left" style="font-size: 0.8rem;"></i></a></li>
+                            <li class="page-item"><a class="page-link border bg-primary-subtle text-primary border-primary-subtle rounded px-3 py-1 shadow-sm fw-bold" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-muted bg-transparent px-3 py-1 shadow-none" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-muted bg-transparent px-3 py-1 shadow-none" href="#">3</a></li>
+                            <li class="page-item disabled"><span class="page-link border-0 text-muted bg-transparent shadow-none">...</span></li>
+                            <li class="page-item"><a class="page-link border-0 text-muted bg-transparent px-3 py-1 shadow-none" href="#">8</a></li>
+                            <li class="page-item"><a class="page-link border bg-white text-muted shadow-sm rounded px-2 py-1" href="#"><i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

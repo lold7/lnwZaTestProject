@@ -1,0 +1,526 @@
+/* ---------- Admin Dashboard Styles ---------- */
+
+:root {
+    --admin-bg: #f8f9fa;
+    --admin-sidebar-width: 260px;
+    --admin-topbar-height: 70px;
+    --admin-border-color: #f1f3f5;
+    --admin-text-muted: #868e96;
+}
+
+body {
+    background-color: var(--admin-bg);
+    color: #343a40;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Layout */
+.admin-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: var(--admin-sidebar-width);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+.sidebar-header {
+    height: var(--admin-topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+.sidebar-header .logo-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: #3b82f6 !important;
+}
+
+.sidebar-nav .nav-link {
+    color: #495057;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+    transition: all 0.2s;
+}
+.sidebar-nav .nav-link i {
+    font-size: 1.1rem;
+    color: #adb5bd;
+}
+.sidebar-nav .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #1a1a1a;
+}
+.sidebar-nav .nav-link.active {
+    background-color: #eef2ff;
+    color: #3b82f6;
+}
+.sidebar-nav .nav-link.active i {
+    color: #3b82f6;
+}
+
+/* Main Content */
+.admin-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Topbar */
+.admin-topbar {
+    height: var(--admin-topbar-height);
+    border-color: var(--admin-border-color) !important;
+}
+.search-bar {
+    width: 300px;
+}
+.search-bar input {
+    background-color: #f1f3f5 !important;
+    font-size: 0.9rem;
+}
+
+/* Cards */
+.admin-card {
+    background: #fff;
+    border: 1px solid var(--admin-border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+.bg-purple-subtle { background-color: #f3e8ff; }
+.text-purple { color: #9333ea; }
+.bg-primary-subtle { background-color: #e0e7ff; }
+.bg-warning-subtle { background-color: #fef3c7; }
+.text-warning { color: #d97706; }
+.bg-danger-subtle { background-color: #fee2e2; }
+
+/* Table */
+.admin-table th {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: #868e96;
+    border-bottom-width: 1px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.admin-table td {
+    padding: 1rem 0;
+    border-color: var(--admin-border-color);
+    vertical-align: middle;
+}
+.admin-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+.book-color-block {
+    width: 32px;
+    height: 42px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.font-size-12 { font-size: 0.75rem; }
+.font-size-14 { font-size: 0.875rem; }
+
+/* Progress bar overrides */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 50px;
+}
+.progress-bar {
+    border-radius: 50px;
+}
+
+/* Bottom Actions */
+.action-card {
+    background-color: #eef2ff !important;
+    border: none;
+}
+.action-card .icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #dbeafe;
+    color: #3b82f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+.action-card-secondary {
+    background-color: #f8f9fa !important;
+}
+.action-card-secondary .icon-circle {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+@media (max-width: 991.98px) {
+    .admin-layout { flex-direction: column; }
+    .admin-sidebar { width: 100%; height: auto; border-right: none !important; border-bottom: 1px solid var(--admin-border-color); }
+    .sidebar-nav { display: none; } /* Hide sidebar nav on mobile by default or implement mobile toggle */
+    .admin-topbar { padding: 1rem !important; height: auto; flex-wrap: wrap; gap: 1rem; }
+    .search-bar { width: 100%; order: 3; margin-top: 0.5rem; }
+}
+
+/* Pagination Overrides */
+.admin-pagination .page-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.admin-pagination .page-link:hover:not(.bg-primary) {
+    background-color: #f8f9fa !important;
+    color: #1a1a1a !important;
+    border-radius: 0.375rem;
+}
+
+/* ---------- Form Specific Styles (Inventory/Add Product) ---------- */
+.form-card {
+    background: #fff;
+    border: 1px solid var(--admin-border-color);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    margin-bottom: 1.5rem;
+}
+.form-card h5 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+.form-control, .form-select {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border-color: #dee2e6;
+    background-color: #f8f9fa; /* Matches screenshot light inputs */
+}
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    background-color: #fff;
+}
+.input-group-text {
+    background-color: transparent;
+    color: #adb5bd;
+    border-color: #dee2e6;
+    border-right: none;
+}
+.input-group .form-control {
+    border-left: none;
+    padding-left: 0;
+}
+
+/* Rich Text Editor */
+.editor-toolbar {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+.editor-toolbar button {
+    background: transparent;
+    border: none;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.editor-toolbar button:hover {
+    background: #e9ecef;
+}
+textarea.editor-textarea {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    min-height: 150px;
+}
+
+/* Dropzone */
+.dropzone {
+    border: 2px dashed #ced4da;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    background-color: #fcfcfc;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.dropzone:hover {
+    border-color: #3b82f6;
+    background-color: #f0f7ff;
+}
+.dropzone .icon-circle {
+    width: 54px;
+    height: 54px;
+    background-color: #e6f0ff;
+    color: #3b82f6;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Uploaded Item */
+.uploaded-file {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.uploaded-file img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+.uploaded-file .file-details {
+    flex-grow: 1;
+}
+
+/* Tag Chips */
+.tags-input-container {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+.tags-input-container input {
+    border: none;
+    background: transparent;
+    flex-grow: 1;
+    min-width: 100px;
+    outline: none;
+    font-size: 0.9rem;
+    padding: 0.2rem;
+}
+.tag-chip {
+    background-color: #e0f2fe;
+    color: #0284c7;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.tag-chip i {
+    cursor: pointer;
+}
+
+/* ---------- Shared Admin Utilities ---------- */
+.page-title {
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+}
+
+/* ---------- Customer Management Styles ---------- */
+.customer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.bg-jd { background-color: #e0e7ff; color: #3b82f6; }
+.bg-js { background-color: #f3e8ff; color: #9333ea; }
+.bg-bb { background-color: #ffedd5; color: #ea580c; }
+.bg-aw { background-color: #fce7f3; color: #db2777; }
+.bg-cg { background-color: #fee2e2; color: #ef4444; }
+
+.status-inactive { background-color: #f1f3f5; color: #495057; border: 1px solid #e9ecef; }
+.status-suspended { background-color: #fee2e2; color: #ef4444; }
+
+.btn-icon-dots {
+    color: #adb5bd;
+    background: transparent;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+.btn-icon-dots:hover {
+    color: #495057;
+    background-color: #f8f9fa;
+}
+
+.table-toolbar {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--admin-border-color);
+}
+.table-toolbar .form-control {
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+/* ---------- Order Management Styles ---------- */
+.bg-as { background-color: #dbeafe; color: #3b82f6; }
+.bg-rj { background-color: #f3e8ff; color: #9333ea; }
+.bg-ew { background-color: #fce7f3; color: #db2777; }
+.bg-mb { background-color: #ccfbf1; color: #0d9488; }
+.bg-sl { background-color: #e0e7ff; color: #4f46e5; }
+
+.status-pending { background-color: #fef3c7; color: #d97706; border: 1px solid #fde68a; }
+.status-completed { background-color: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
+.status-processing { background-color: #dbeafe; color: #2563eb; border: 1px solid #bfdbfe; }
+.status-cancelled { background-color: #fee2e2; color: #ef4444; border: 1px solid #fecaca; }
+
+.order-tabs .tab-link {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.order-tabs .tab-link:hover {
+    color: #1a1a1a;
+    background-color: #f8f9fa;
+}
+.order-tabs .tab-link.active {
+    background-color: #e0e7ff;
+    color: #3b82f6;
+}
+
+/* ---------- Admin Login Styles ---------- */
+.admin-login-body {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.login-card {
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+    width: 100%;
+    max-width: 420px;
+    padding: 0; 
+    overflow: hidden;
+}
+.login-card-body {
+    padding: 2.5rem;
+}
+.login-card-footer {
+    background-color: #fcfcfc;
+    border-top: 1px solid #f1f3f5;
+    padding: 1.25rem;
+    text-align: center;
+}
+.login-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #e0e7ff;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.5rem;
+}
+.login-form-control {
+    padding-left: 2.75rem;
+    border-radius: 8px;
+    background-color: #fff;
+}
+.login-input-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: #adb5bd;
+    z-index: 5;
+    font-size: 1.1rem;
+}
+
+/* ---------- Admin Profile Styles ---------- */
+.profile-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.profile-avatar-wrapper img {
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.profile-edit-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+.profile-edit-badge:hover {
+    transform: scale(1.05);
+}
+
+.profile-input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    z-index: 4;
+}
+.profile-input-with-icon {
+    padding-left: 2.5rem;
+}
+
+
+
